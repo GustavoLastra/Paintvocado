@@ -1,22 +1,17 @@
 
-//myPaintArea.context
+//call to myPaintArea objects function to create the canvas
 myPaintArea.start();
-
 
 function startPaint() {
 
-  //myPaintArea.canvas.addEventListener('click', mouseClicked, false);
-  //myPaintArea.canvas.addEventListener('mousemove', mouseMoved, false);
-  //myPaintArea.canvas.addEventListener('mousemove', mouseMoved, false);
-
-  /*                            function               */
+  /*                                                               function to print a rect filled with a color           */
   function fillRect (startPosX,startPosY,endPosX,endPosY,color){
     myPaintArea.context.fillStyle = color;
     myPaintArea.context.fillRect(startPosX,startPosY,endPosX,endPosY);
     myPaintArea.context.rect(20, 20, 150, 100);
   }
   fillRect(200,0,150,200,"blue");
-  /*                            function               */
+  /*                                                                function to print a line              */
   function line(startPosX,startPosY,endPosX,endPosY,color){
     myPaintArea.context.moveTo(startPosX,startPosY);
     myPaintArea.context.lineTo(endPosX,endPosY);
@@ -25,17 +20,24 @@ function startPaint() {
 
   line(0,0,400,600);
 
-  /*                            function               */
+  /*                                                               function  to print a circle             */
 
-  myPaintArea.context.beginPath();
-  myPaintArea.context.arc(100,500,40,0,2*Math.PI);
-  myPaintArea.context.stroke();
+  function circle(posX,posY){
+    myPaintArea.context.beginPath();
+    myPaintArea.context.arc(posX,posY,40,0,2*Math.PI);
+    myPaintArea.context.stroke();
+  }
+  circle(100,500);
 
-  /*                            function               */
-  myPaintArea.context.font = "30px Arial";
-  myPaintArea.context.fillText("Hola Mari :D",10,50);
 
-  /*                            function   Draw line with mouse             */
+  /*                                                             function to print a text               */
+
+  function text(text,posX, posY){
+    myPaintArea.context.font = "30px Arial";
+    myPaintArea.context.fillText(text,posX, posY);
+  }
+  text("Hola Mari :D",10,50);
+  /*                                                           function   Draw line with mouse             */
 
   function draw(xPos, yPos) {
    myPaintArea.context.beginPath();
@@ -44,19 +46,8 @@ function startPaint() {
    myPaintArea.context.fill();
    myPaintArea.context.closePath();
 
-   console.log(" heeeeeey tuuuuuuuuuuu, ");
-  }
-  /*function draw(xPos, yPos){
-    canvas.beginPath();
-    canvas.fillStyle = $('input[type=color]').val();
-    canvas.arc(xPos - $('canvas').offset().left, yPos - $('canvas').offset().top, $('input[type=range]').val(), 0, 2 * Math.PI);
-    canvas.fill();
-    canvas.closePath();
-  }*/
-
-
-
-
+   console.log(" Bin am malen!!! ");
+ }
 
   click = false;
 
@@ -81,85 +72,8 @@ function startPaint() {
       draw(e.pageX, e.pageY);
     }
   });
-
-
-
-
-  /*function mouseClicked(e) {
-    var x= e.offsetX;
-    var y= e.offsetY;
-    draw(e.pageX, e.pageY);
-    console.log(x+ " heeeeeey, "+ y);
-    draw(x,y);
-  }
-
-  function mouseup(e) {
-    var x= e.offsetX;
-    var y= e.offsetY;
-    draw(e.pageX, e.pageY);
-    console.log(x+ " heeeeeey, "+ y);
-    draw(x,y);
-  }
-
-
-
-
-  $('canvas').mousemove(function(e){
-   if(click === true){
-     draw(e.pageX, e.pageY);
-   }
- });*/
-
-
-
-/*  $('canvas').mousedown(function(e){
-   draw(e.pageX, e.pageY);
-   console.log("mousedown");
-  });
-
-  $('canvas').mouseup(function(e){
-   draw(e.pageX, e.pageY);
-   console.log("mouseup");
- });*/
-
- /*                            function               */
-
-
-
-  /*function mouseMoved(e) {
-      mouseX = e.offsetX;
-      mouseY = e.offsetY;
-      console.log(x+ " , "+ y);
-
-  }*/
-
 }
-
-
-
 
 function updatePaintArea() {
 myPaintArea.clear();
-
-
 }
-
-
-
-
-/*$('myCanvas').mousedown(function(e){
- draw(e.pageX, e.pageY);
- console.log("mousedown");
-});
-
-$('myCanvas').mouseup(function(e){
- draw(e.pageX, e.pageY);
- console.log("mouseup");
-});
-
-$('myCanvas').mousemove(function(e){
- if(click === true){
-   draw(e.pageX, e.pageY);
-   console.log("mousemove");
- }
-});*/
