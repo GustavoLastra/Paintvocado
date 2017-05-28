@@ -7,25 +7,22 @@
     <script src="js/jQuery.js"></script>
 
   </head>
-  <body>
+  <body onload="start()">
     <input type="range" min="1" max="60" />
 
     <canvas id="myCanvas" style="border:1px solid #000000;">
 
     </canvas>
 
+    <button id ="buttonStart">Start</button>
+    <button id="buttonReset">Reset</button>
 
-    <img src="" id="mirror" width="300px" height="300px"/>
-    <button onmousedown="start()" >Start</button>
-    <button onmousedown="restart()" >Reset</button>
-
-    <button href="#" id ="buttonSave">Save</button>
-    <button href="#" id ="buttonRestore">Restore</button>
+    <button id ="buttonSave">Save</button>
+    <button id ="buttonRestore">Restore</button>
 
 
     <button id="buttonPencil">Pencil</button>
-    <button id="mirrorSaveButton">Mirror Save</button>
-    <a href="#" id="btn-download">Download</a>
+    <button href="#" id="btn-download">Download</button>
 
     <script src="js/myPaintArea.js" charset="utf-8"></script>
     <script src="js/Paint.js" charset="utf-8"></script>
