@@ -7,28 +7,16 @@
     <script src="js/jQuery.js"></script>
 
   </head>
-  <body onload="start()">
+  <body>
+    <canvas id="myCanvas" style="border:1px solid #000000;"></canvas>
     <input type="range" min="1" max="60" />
-
-    <canvas id="myCanvas" style="border:1px solid #000000;">
-
-    </canvas>
-
-    <button id ="buttonStart">Start</button>
-    <button id="buttonReset">Reset</button>
-
+    <button id="buttonReset">Clear</button>
     <button id ="buttonSave">Save</button>
     <button id ="buttonRestore">Restore</button>
-
-
     <button id="buttonPencil">Pencil</button>
     <button href="#" id="btn-download">Download</button>
-
     <script src="js/myPaintArea.js" charset="utf-8"></script>
     <script src="js/Paint.js" charset="utf-8"></script>
-
-
+    <script src="js/eventHandlers.js" charset="utf-8"></script>
   </body>
-
-
 </html>
