@@ -1,5 +1,5 @@
-const CANVAS_WIDTH = 960;
-const CANVAS_HEIGHT = 701;
+const CANVAS_WIDTH = 300;
+const CANVAS_HEIGHT = 300;
 const CANVAS_FRAME = 25;
 var myPaintArea = {
     canvas : document.getElementById('myCanvas'),
@@ -16,5 +16,11 @@ var myPaintArea = {
       },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    save : function() {
+        this.context.save();
+    },
+    restore : function() {
+        this.context.restore();
     }
 }

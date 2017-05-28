@@ -1,12 +1,19 @@
 
 //call to myPaintArea objects function to create the canvas
 myPaintArea.start();
+var $buttonSave = $('#buttonSave');
+var $buttonRestore = $('#buttonRestore');
+var $mirrorImage = $('#mirror');
+var drawingSurfaceImageData;
 
 function start() {
+
   var state;                              //indicates what is going to be made
   var $window = $(window);                //simplification of jquery selector
-  var $canvas = $('#myCanvas');
   var $buttonPencil = $('#buttonPencil');
+  var $buttonDownload = $('btn-download');
+  var $mirrorSaveButton = $('#mirrorSaveButton');
+  var $canvas = $('#myCanvas');
 
   var click = false;                      //initial value of "click"
 
@@ -42,6 +49,26 @@ function start() {
   $buttonPencil.click(function(e){
       state = "pencil";
   });
+  $mirrorSaveButton.click(function(e){
+    var dataURL = myPaintArea.canvas.toDataURL('image/png');
+    $mirrorImage.src = dataURL;
+
+    console.log("saviiiiing");
+    console.log($mirrorImage.src);
+  });
+
+  $buttonSave.click(function(e){
+    save();
+  });
+
+  $buttonRestore.click(function(e){
+    restore();
+  });
+
+  $buttonDownload.click(function(e){
+    var dataURL = $canvas.toDataURL('image/png');
+    $buttonDownload.href = dataURL;
+  });
 
   var pencil = {
     draw : function(xPos, yPos) {
@@ -56,6 +83,8 @@ function start() {
    }
   }
   pencil.draw();
+
+
 
 
 
@@ -119,4 +148,24 @@ function start() {
 
 function restart() {
 myPaintArea.clear();
+}
+
+function save() {
+//myPaintArea.save;
+//myPaintArea.context.fillStyle = 'green';
+//myPaintArea.context.fillRect(10, 10, 100, 100);
+
+
+drawingSurfaceImageData = myPaintArea.context.getImageData(0, 0,
+                            myPaintArea.canvas.width,
+                            myPaintArea.canvas.height);
+console.log("I am saving");
+}
+
+function restore() {
+//myPaintArea.restore; // restore to the default state
+//myPaintArea.context.fillRect(150, 75, 100, 100);
+myPaintArea.context.putImageData(drawingSurfaceImageData, 0, 0);
+
+console.log("I am restoring");
 }
