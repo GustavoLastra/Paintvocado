@@ -25,18 +25,26 @@ var rectangle = {
     myPaintArea.context.stroke();
     myPaintArea.context.closePath();
 
-    //ctx.fillStyle = "red";
-    //ctx.fillRect(20, 20, 150, 100);
-    //ctx.lineWidth="6";
-    //ctx.strokeStyle="blue";
-    //ctx.rect(20, 20, 150, 100);
-    //ctx.stroke();
-
-
    console.log(" Bin am rectangles malen!!! ");
  }
+}
+
+var circle = {
+
+  draw : function(xPos, yPos) {
+    myPaintArea.context.beginPath();
+    myPaintArea.context.arc(xPos, yPos, 75, 50, 0, 2 * Math.PI, false);
+
+    myPaintArea.context.fillStyle = $('input[id=fuelfarbe]').val();
+    myPaintArea.context.fill();
+    myPaintArea.context.lineWidth=$('input[type=range]').val();
+    myPaintArea.context.strokeStyle = $('input[id=strichfarbe]').val();
+
+    myPaintArea.context.stroke();
 
 
 
 
+   console.log(" Bin am circles malen!!! ");
+ }
 }
