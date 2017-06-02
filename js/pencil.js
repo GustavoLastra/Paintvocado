@@ -15,13 +15,15 @@ var pencil = {
 var rectangle = {
 
   draw : function(xPos, yPos) {
+    myPaintArea.context.beginPath();
     myPaintArea.context.fillStyle = $('input[id=fuelfarbe]').val();
     myPaintArea.context.fillRect(xPos,yPos,$('input[id=width]').val(), $('input[id=height]').val());
-    myPaintArea.context.lineWidth="6";
+    myPaintArea.context.lineWidth=$('input[type=range]').val();
+    console.log($('input[type=range]').val());
     myPaintArea.context.strokeStyle=$('input[id=strichfarbe]').val();
     myPaintArea.context.rect(xPos,yPos,$('input[id=width]').val(), $('input[id=height]').val());
     myPaintArea.context.stroke();
-
+    myPaintArea.context.closePath();
 
     //ctx.fillStyle = "red";
     //ctx.fillRect(20, 20, 150, 100);
@@ -33,5 +35,8 @@ var rectangle = {
 
    console.log(" Bin am rectangles malen!!! ");
  }
+
+
+
 
 }
