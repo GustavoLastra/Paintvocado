@@ -58,6 +58,25 @@ $canvas.mouseup(function(e) {
         //alert(e.pageX+ ' , ' + e.pageY);
 });
 
+myPaintArea.canvas.onmousedown = function (e) {
+
+  if(state=="line"){
+    line.x1 = e.pageX;
+    line.y1 = e.pageY;
+  }
+};
+
+myPaintArea.canvas.onmouseup = function (e) {
+    if (state=="line"){
+      line.x2 = e.pageX;
+      line.y2 = e.pageY;
+      //line.getEndPoints(e.pageX, e.pageY);
+      line.draw();
+
+    }
+};
+
+
 $buttonPencil.click(function(e){
     state = "pencil";
 });
@@ -94,21 +113,3 @@ $buttonDownload.click(function(e){
   var dataURL = $canvas.toDataURL('image/png');
   $buttonDownload.href = dataURL;
 });
-
-myPaintArea.canvas.onmousedown = function (e) {
-
-  if(state=="line"){
-    line.x1 = e.pageX;
-    line.y1 = e.pageY;
-  }
-};
-
-myPaintArea.canvas.onmouseup = function (e) {
-    if (state=="line"){
-      line.x2 = e.pageX;
-      line.y2 = e.pageY;
-      //line.getEndPoints(e.pageX, e.pageY);
-      line.draw();
-
-    }
-};
