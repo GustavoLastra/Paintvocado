@@ -61,15 +61,15 @@ $canvas.mouseup(function(e) {
 myPaintArea.canvas.onmousedown = function (e) {
 
   if(state=="line"){
-    line.x1 = e.pageX;
-    line.y1 = e.pageY;
+    line.x1 = e.pageX - $('#myCanvas').offset().left;
+    line.y1 = e.pageY - $('#myCanvas').offset().top;
   }
 };
 
 myPaintArea.canvas.onmouseup = function (e) {
     if (state=="line"){
-      line.x2 = e.pageX;
-      line.y2 = e.pageY;
+      line.x2 = e.pageX- $('#myCanvas').offset().left;
+      line.y2 = e.pageY- $('#myCanvas').offset().top;
       //line.getEndPoints(e.pageX, e.pageY);
       line.draw();
 

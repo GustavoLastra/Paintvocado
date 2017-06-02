@@ -1,5 +1,5 @@
-const CANVAS_WIDTH = 300;
-const CANVAS_HEIGHT = 300;
+const CANVAS_WIDTH = 500;
+const CANVAS_HEIGHT = 400;
 const CANVAS_FRAME = 25;
 var myPaintArea = {
   canvas : document.getElementById('myCanvas'),

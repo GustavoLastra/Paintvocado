@@ -14,11 +14,11 @@ var rectangle = {
   draw : function(xPos, yPos) {
     myPaintArea.context.beginPath();
     myPaintArea.context.fillStyle = $('input[id=fuelfarbe]').val();
-    myPaintArea.context.fillRect(xPos,yPos,$('input[id=width]').val(), $('input[id=height]').val());
+    myPaintArea.context.fillRect(xPos- $('#myCanvas').offset().left,yPos- $('#myCanvas').offset().top,$('input[id=width]').val(), $('input[id=height]').val());
     myPaintArea.context.lineWidth=$('input[type=range]').val();
     console.log($('input[type=range]').val());
     myPaintArea.context.strokeStyle=$('input[id=strichfarbe]').val();
-    myPaintArea.context.rect(xPos,yPos,$('input[id=width]').val(), $('input[id=height]').val());
+    myPaintArea.context.rect(xPos- $('#myCanvas').offset().left,yPos- $('#myCanvas').offset().top,$('input[id=width]').val(), $('input[id=height]').val());
     myPaintArea.context.stroke();
     myPaintArea.context.closePath();
    console.log(" Bin am rectangles malen!!! ");
@@ -28,7 +28,7 @@ var rectangle = {
 var circle = {
   draw : function(xPos, yPos) {
     myPaintArea.context.beginPath();
-    myPaintArea.context.arc(xPos, yPos, 75, 50, 0, 2 * Math.PI, false);
+    myPaintArea.context.arc(xPos- $('#myCanvas').offset().left, yPos- $('#myCanvas').offset().top, 75, 50, 0, 2 * Math.PI, false);
     myPaintArea.context.fillStyle = $('input[id=fuelfarbe]').val();
     myPaintArea.context.fill();
     myPaintArea.context.lineWidth=$('input[type=range]').val();
