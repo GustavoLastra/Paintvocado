@@ -4,6 +4,7 @@ var $buttonSave = $('#buttonSave');
 var $buttonRestore = $('#buttonRestore');
 var $window = $(window);                //simplification of jquery selector
 var $buttonPencil = $('#buttonPencil');
+var $buttonRectangle = $('#buttonRectangle');
 var $buttonDownload = $('btn-download');
 var $canvas = $('#myCanvas');
 
@@ -37,8 +38,21 @@ $canvas.mousemove(function(e){
   }
 });
 
+$canvas.mouseup(function(e) {
+  if(click === true){
+    if (state== "rectangle"){
+      rectangle.draw(e.pageX, e.pageY);
+    }
+  }
+        //alert(e.pageX+ ' , ' + e.pageY);
+    });
+
 $buttonPencil.click(function(e){
     state = "pencil";
+});
+
+$buttonRectangle.click(function(e){
+    state = "rectangle";
 });
 
 $buttonSave.click(function(e){
