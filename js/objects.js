@@ -28,7 +28,7 @@ var rectangle = {
 var circle = {
   draw : function(xPos, yPos) {
     myPaintArea.context.beginPath();
-    myPaintArea.context.arc(xPos- $('#myCanvas').offset().left, yPos- $('#myCanvas').offset().top, 75, 50, 0, 2 * Math.PI, false);
+    myPaintArea.context.arc(xPos- $('#myCanvas').offset().left, yPos- $('#myCanvas').offset().top, $('input[id=width]').val(), 50, 0, 2 * Math.PI, false);
     myPaintArea.context.fillStyle = $('input[id=fuelfarbe]').val();
     myPaintArea.context.fill();
     myPaintArea.context.lineWidth=$('input[type=range]').val();
