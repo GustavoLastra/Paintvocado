@@ -7,6 +7,7 @@ var $buttonPencil = $('#buttonPencil');
 var $buttonRectangle = $('#buttonRectangle');
 var $buttonCircle = $('#buttonCircle');
 var $buttonLine = $('#buttonLine');
+var $buttonAvocado = $('#buttonAvocado');
 var $buttonDownload = $('btn-download');
 var $canvas = $('#myCanvas');
 
@@ -46,7 +47,6 @@ $canvas.mouseup(function(e) {
       rectangle.draw(e.pageX, e.pageY);
     }
   }
-        //alert(e.pageX+ ' , ' + e.pageY);
 });
 
 $canvas.mouseup(function(e) {
@@ -55,11 +55,17 @@ $canvas.mouseup(function(e) {
       circle.draw(e.pageX, e.pageY);
     }
   }
-        //alert(e.pageX+ ' , ' + e.pageY);
+});
+
+$canvas.mouseup(function(e) {
+  if(click === true){
+    if (state== "avocado"){
+      avocado.draw(e.pageX, e.pageY);
+    }
+  }
 });
 
 myPaintArea.canvas.onmousedown = function (e) {
-
   if(state=="line"){
     line.x1 = e.pageX - $('#myCanvas').offset().left;
     line.y1 = e.pageY - $('#myCanvas').offset().top;
@@ -91,6 +97,10 @@ $buttonCircle.click(function(e){
 
 $buttonLine.click(function(e){
     state = "line";
+});
+
+$buttonAvocado.click(function(e){
+    state = "avocado";
 });
 
 $buttonSave.click(function(e){

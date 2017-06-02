@@ -38,6 +38,17 @@ var circle = {
  }
 }
 
+var avocado = {
+  draw : function(xPos, yPos) {
+    drawing = new Image();
+    drawing.src = "img/avocado.png"
+    myPaintArea.context.drawImage(drawing,xPos- $('#myCanvas').offset().left, yPos- $('#myCanvas').offset().top, $('input[id=width]').val(), $('input[id=height]').val() );
+    //var img = document.getElementById("#avocado");
+    //myPaintArea.context.drawImage(img,xPos- $('#myCanvas').offset().left, yPos- $('#myCanvas').offset().top);
+    console.log(" Bin am Avocados malen!!! ");
+  }
+}
+
 var line = {
   x1: "",
   y1: "",
