@@ -16,10 +16,10 @@ var rectangle = {
 
   draw : function(xPos, yPos) {
     myPaintArea.context.fillStyle = $('input[id=fuelfarbe]').val();
-    myPaintArea.context.fillRect(xPos,yPos,xPos+50, yPos+50);
+    myPaintArea.context.fillRect(xPos,yPos,$('input[id=width]').val(), $('input[id=height]').val());
     myPaintArea.context.lineWidth="6";
     myPaintArea.context.strokeStyle=$('input[id=strichfarbe]').val();
-    myPaintArea.context.rect(xPos, yPos, xPos+50, yPos+50);
+    myPaintArea.context.rect(xPos,yPos,$('input[id=width]').val(), $('input[id=height]').val());
     myPaintArea.context.stroke();
 
 
