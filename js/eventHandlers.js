@@ -6,6 +6,7 @@ var $window = $(window);                //simplification of jquery selector
 var $buttonPencil = $('#buttonPencil');
 var $buttonRectangle = $('#buttonRectangle');
 var $buttonCircle = $('#buttonCircle');
+var $buttonLine = $('#buttonLine');
 var $buttonDownload = $('btn-download');
 var $canvas = $('#myCanvas');
 
@@ -69,6 +70,10 @@ $buttonCircle.click(function(e){
     state = "circle";
 });
 
+$buttonLine.click(function(e){
+    state = "line";
+});
+
 $buttonSave.click(function(e){
   save();
 });
@@ -89,3 +94,21 @@ $buttonDownload.click(function(e){
   var dataURL = $canvas.toDataURL('image/png');
   $buttonDownload.href = dataURL;
 });
+
+myPaintArea.canvas.onmousedown = function (e) {
+
+  if(state=="line"){
+    line.x1 = e.pageX;
+    line.y1 = e.pageY;
+  }
+};
+
+myPaintArea.canvas.onmouseup = function (e) {
+    if (state=="line"){
+      line.x2 = e.pageX;
+      line.y2 = e.pageY;
+      //line.getEndPoints(e.pageX, e.pageY);
+      line.draw();
+
+    }
+};
