@@ -8,7 +8,8 @@ var $buttonRectangle = $('#buttonRectangle');
 var $buttonCircle = $('#buttonCircle');
 var $buttonLine = $('#buttonLine');
 var $buttonAvocado = $('#buttonAvocado');
-var $buttonDownload = $('btn-download');
+var $buttonDownload = $('#buttonDownload');
+var $fileUpload = $('#fileUpload');
 var $canvas = $('#myCanvas');
 
 /*                                              Event handlers                 */
@@ -119,7 +120,29 @@ $buttonReset.click(function(e){
   reset();
 });
 
-$buttonDownload.click(function(e){
-  var dataURL = $canvas.toDataURL('image/png');
-  $buttonDownload.href = dataURL;
+$buttonDownload.click(function() {
+  this.href = $('#myCanvas')[0].toDataURL();// Change here
+  this.download = 'Paintvocado.png';
 });
+
+
+//$fileUpload.click("change", readImage, false);
+
+var imageLoader = document.getElementById('fileUpload');
+    imageLoader.addEventListener('change', handleImage, false);
+
+function handleImage(e) {
+  console.log("am hochladen!");
+  var reader = new FileReader();
+  reader.onload = function(event){
+      var img = new Image();
+
+      img.onload = function(){
+          myPaintArea.canvas.width = img.width;
+          myPaintArea.canvas.height = img.height;
+          myPaintArea.context.drawImage(img,0,0);
+      }
+      img.src = event.target.result;
+  }
+  reader.readAsDataURL(e.target.files[0]);
+}
