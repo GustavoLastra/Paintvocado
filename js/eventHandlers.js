@@ -83,7 +83,6 @@ myPaintArea.canvas.onmouseup = function (e) {
     }
 };
 
-
 $buttonPencil.click(function(e){
     state = "pencil";
 });
@@ -121,12 +120,9 @@ $buttonReset.click(function(e){
 });
 
 $buttonDownload.click(function() {
-  this.href = $('#myCanvas')[0].toDataURL();// Change here
+  this.href = $('#myCanvas')[0].toDataURL();
   this.download = 'Paintvocado.png';
 });
-
-
-//$fileUpload.click("change", readImage, false);
 
 var imageLoader = document.getElementById('fileUpload');
     imageLoader.addEventListener('change', handleImage, false);

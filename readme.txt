@@ -14,7 +14,6 @@ line: https://openclipart.org/detail/197867/mono-line-normal-end
 circle: https://openclipart.org/detail/246392/industrial-push-button-black
 
 
-
 Avocados can not be downloaded : "Tainted canvases may not be exported."
 https://stackoverflow.com/questions/20424279/canvas-todataurl-securityerror
 
