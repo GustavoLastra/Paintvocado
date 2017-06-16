@@ -23,7 +23,7 @@ canvas {
 }
 
 .title {
-  margin-top: 5%;
+  margin-top: 8%;
 }
 
 .block {
@@ -31,16 +31,21 @@ canvas {
 }
 
 .blockleft {
-  border-left: solid;
-  border-width: 1px;
+  border: 0;
+  border-left: 1px solid #eee;
 }
 
-.blocktop {
+/*.blocktop {
   border-top: solid;
   border-width: 1px;
-}
+}*/
 
 .division {
   border-style: solid;
   border-width: 1px;
+}
+
+.blockone {
+  padding-left: 15%;
+  padding-top: 8%;
 }
