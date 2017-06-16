@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	font-family:sans-serif;
+}
+input[type=number]{
+	width:50px;
+	height:50px;
+	text-align:center;
+	font-size:14px;
+}
+input[type=button]{
+	margin-top:4%;
+	width:100px;
+}
+.matrixFieldset{
+	border-style:none;
+	float:left;
+	margin-left:2.5%;
+	margin-right:2.5%;
+	padding:2%;
+}
+legend{
+	font-size:18px;
+	font-weight:bold;
+}
+#tErgMatrix td{
+	width:50px;
+	height:50px;
+	text-align:center;
+	background-color:#FFF;
+	border-style:solid;
+	border-color:#999;
+	border-width:thin;
+	font-size:14px;
+	}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Matrixmultiplikation</title>
+    <link rel="stylesheet" href="css-matrixmultiplikation.css" type="text/css">
+    <script src="jquery-matrixmultiplikation.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/canvas.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/1.2.1/bootstrap-filestyle.min.js"> </script>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Practikum 2</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="index.html">Paint</a></li>
+          <li><a href="test.html">Matrix</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    </header>
+    <main class="container">
+
+      <h1 class="title">Zwei Multiplikation von Matrizen mittel JavaScript</h1>
+      <section class="row ">
+        <section class="col-sm-5 block ">
+          <input id="multi" type="button" value="A * B" class="btn btn-default "  onClick="getMultiplicationResult()"/>
+        </section>
+        <section class="col-sm-5 block ">
+          <form  >
+              <fieldset id="matrixB" class="matrixFieldset"  style="border-style:solid;border-color:black;">
+                  <legend>Matrix B:</legend>
+                  <div class="row" >
+                    <div class="col-sm-5">
+                      <div class="tools">
+                        <input type="button"  class="btn btn-default " value="Zeile +" onClick="addRow('tMatrixB')"/>
+                        <input type="button"  class="btn btn-default " value="Zeile -" onClick="deleteRow('tMatrixB')"/>
+                        <input type="button"  class="btn btn-default " value="Spalte +" onClick="addColumn('tMatrixB')"/>
+                        <input type="button"  class="btn btn-default " value="Spalte -" onClick="deleteColumn('tMatrixB')"/>
+                      </div>
+                    </div>
+                    <div class="col-sm-5">
+                      <table id="tMatrixB">
+                          <tbody>
+                          <tr>
+                              <td><input name="b11" type="number" value="0"></td>
+                              <td><input name="b12" type="number" value="0"></td>
+                              <td><input name="b13" type="number" value="0"></td>
+                          </tr>
+                          <tr>
+                              <td><input name="b21" type="number" value="0"></td>
+                              <td><input name="b22" type="number" value="0"></td>
+                              <td><input name="b23" type="number" value="0"></td>
+                          </tr>
+                          <tr>
+                              <td><input name="b31" type="number" value="0"></td>
+                              <td><input name="b32" type="number" value="0"></td>
+                              <td><input name="b33" type="number" value="0"></td>
+                          </tr>
+                          </tbody>
+                      </table>
+                    </div>
+                  </div>
+              </fieldset>
+          </form>
+
+
+        </section>
+
+      </section>
+      <section class="row ">
+        <section class="col-sm-5 block">
+          <form>
+                <fieldset id="matrixA" class="matrixFieldset">
+                      <legend>Matrix A:</legend>
+                      <div class="row">
+                        <div class="col-sm-5 tools">
+                          <input type="button"  class="btn btn-default " value="Zeile +" onClick="addRow('tMatrixA')"/>
+                          <input type="button"  class="btn btn-default " value="Zeile -" onClick="deleteRow('tMatrixA')"/>
+                          <input type="button"  class="btn btn-default " value="Spalte +" onClick="addColumn('tMatrixA')"/>
+                          <input type="button"  class="btn btn-default " value="Spalte -" onClick="deleteColumn('tMatrixA')"/>
+
+                        </div>
+                        <div class="col-sm-5 ">
+                          <table id="tMatrixA">
+                            <tbody>
+                              <tr>
+                                  <td><input name="a11" type="number" value="0"></td>
+                                  <td><input name="a12" type="number" value="0"></td>
+                                  <td><input name="a13" type="number" value="0"></td>
+                              </tr>
+                              <tr>
+                                  <td><input name="a21" type="number" value="0"></td>
+                                  <td><input name="a22" type="number" value="0"></td>
+                                  <td><input name="a23" type="number" value="0"></td>
+                              </tr>
+                              <tr>
+                                  <td><input name="a31" type="number" value="0"></td>
+                                  <td><input name="a32" type="number" value="0"></td>
+                                  <td><input name="a33" type="number" value="0"></td>
+                              </tr>
+                              </tbody>
+                          </table>
+                        </div>
+
+                      </div>
+
+
+                  </fieldset>
+              </form>
+
+        </section>
+        <section class="col-sm-5 block">
+          <form>
+              <fieldset id="ErgMatrix" class="matrixFieldset">
+                  <legend>Ergebnismatrix:</legend>
+                  <table id="tErgMatrix">
+                      <tbody>
+                       <tr>
+                          <td>0</td>
+                          <td>0</td>
+                          <td>0</td>
+                      </tr>
+                      <tr>
+                          <td>0</td>
+                          <td>0</td>
+                          <td>0</td>
+                      </tr>
+                      <tr>
+                          <td>0</td>
+                          <td>0</td>
+                          <td>0</td>
+                      </tr>
+                      </tbody>
+                  </table>
+
+              </fieldset>
+          </form>
+
+        </section>
+
+
+      </section>
+
+
+
+    </main>
+
+
+  </body>
+</html>

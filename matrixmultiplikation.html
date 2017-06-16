@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="utf-8">
+    <link rel="stylesheet" href="css-matrixmultiplikation.css" type="text/css">
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="jquery-matrixmultiplikation.js"></script>
+    <title>Matrixmultiplikation</title>
+</head>
+<body>
+	<h1>Zwei Multiplikation von Matizen mittel JavaScript</h1>
+		<form>
+        	<fieldset id="matrixA" class="matrixFieldset">
+                <legend>Matrix A:</legend>
+                <table id="tMatrixA">
+                	<tbody>
+                    <tr>
+                        <td><input name="a11" type="number" value="0"></td>
+                        <td><input name="a12" type="number" value="0"></td>
+                        <td><input name="a13" type="number" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input name="a21" type="number" value="0"></td>
+                        <td><input name="a22" type="number" value="0"></td>
+                        <td><input name="a23" type="number" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input name="a31" type="number" value="0"></td>
+                        <td><input name="a32" type="number" value="0"></td>
+                        <td><input name="a33" type="number" value="0"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <input type="button" value="Zeile +" onClick="addRow('tMatrixA')"/>
+                <input type="button" value="Zeile -" onClick="deleteRow('tMatrixA')"/>
+                <input type="button" value="Spalte +" onClick="addColumn('tMatrixA')"/>
+                <input type="button" value="Spalte -" onClick="deleteColumn('tMatrixA')"/>
+            </fieldset>
+        </form>
+        <form>
+            <fieldset id="matrixB" class="matrixFieldset">
+                <legend>Matrix B:</legend>
+                <table id="tMatrixB">
+                    <tbody>
+                    <tr>
+                        <td><input name="b11" type="number" value="0"></td>
+                        <td><input name="b12" type="number" value="0"></td>
+                        <td><input name="b13" type="number" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input name="b21" type="number" value="0"></td>
+                        <td><input name="b22" type="number" value="0"></td>
+                        <td><input name="b23" type="number" value="0"></td>
+                    </tr>
+                    <tr>
+                        <td><input name="b31" type="number" value="0"></td>
+                        <td><input name="b32" type="number" value="0"></td>
+                        <td><input name="b33" type="number" value="0"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <input type="button" value="Zeile +" onClick="addRow('tMatrixB')"/>
+                <input type="button" value="Zeile -" onClick="deleteRow('tMatrixB')"/>
+                <input type="button" value="Spalte +" onClick="addColumn('tMatrixB')"/>
+                <input type="button" value="Spalte -" onClick="deleteColumn('tMatrixB')"/>
+            </fieldset>
+        </form>
+        <form>
+            <fieldset id="ErgMatrix" class="matrixFieldset">
+                <legend>Ergebnismatrix:</legend>
+                <table id="tErgMatrix">
+                    <tbody>
+                     <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>0</td>
+                    </tr>
+                    </tbody>
+                </table>
+               <input id="multi" type="button" value="A * B" onClick="getMultiplicationResult()"/>
+            </fieldset>
+        </form>
+</body>
+</html>

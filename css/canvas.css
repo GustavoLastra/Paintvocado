@@ -21,3 +21,12 @@ canvas {
 .avocado {
   margin-top: 30%;
 }
+
+.title {
+  margin-top: 5%;
+}
+
+.block {
+  margin: 2%;
+  border-style:solid;border-color:black;
+}
