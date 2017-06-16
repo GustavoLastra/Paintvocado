@@ -2,31 +2,34 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Matrixmultiplikation</title>
-    <link rel="stylesheet" href="css-matrixmultiplikation.css" type="text/css">
-    <script src="jquery-matrixmultiplikation.js"></script>
+    <title>Paint</title>
+    <link rel="stylesheet" href="css/matrixmultiplikation.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="css/canvas.css">
+    <script src="jquery-3.2.1.min.js"></script>
+    <script src="jquery-matrixmultiplikation.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-filestyle/1.2.1/bootstrap-filestyle.min.js"> </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">Practikum 2</a>
-      </div>
-      <div id="navbar" class="navbar-collapse collapse">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Practikum 2</a>
+          </div>
+
+      <div id="myNavbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="index.html">Paint</a></li>
-          <li><a href="test.html">Matrix</a></li>
+          <li ><a href="index.html">Paint</a></li>
+          <li class="active"><a href="test.html">Matrix</a></li>
             </ul>
           </li>
         </ul>
@@ -39,7 +42,7 @@
       <h1 class="title">Zwei Multiplikation von Matrizen mittel JavaScript</h1>
       <section class="row ">
         <section class="col-sm-5 block blockone">
-          <input id="multi" type="button" value="A * B" class="btn btn-default "  onClick="getMultiplicationResult()"/>
+          <input id="multi" type="button" value="Starten!" class="btn btn-default "  onClick="getMultiplicationResult()"/>
         </section>
         <section class="col-sm-5 block blockleft">
           <form  >
@@ -47,7 +50,7 @@
                   <legend>Matrix B:</legend>
                   <div class="row" >
                     <div class="col-sm-5">
-                      <div class="tools">
+                      <div class="tools" style="margin-bottom: 4%;">
                         <input type="button"  class="btn btn-default " value="Zeile +" onClick="addRow('tMatrixB')"/>
                         <input type="button"  class="btn btn-default " value="Zeile -" onClick="deleteRow('tMatrixB')"/>
                         <input type="button"  class="btn btn-default " value="Spalte +" onClick="addColumn('tMatrixB')"/>
@@ -78,10 +81,7 @@
                   </div>
               </fieldset>
           </form>
-
-
         </section>
-
       </section>
           <hr>
       <section class="row ">
@@ -90,7 +90,7 @@
                 <fieldset id="matrixA" class="matrixFieldset">
                       <legend>Matrix A:</legend>
                       <div class="row">
-                        <div class="col-sm-5 tools">
+                        <div class="col-sm-5 tools" style="margin-bottom: 4%;">
                           <input type="button"  class="btn btn-default " value="Zeile +" onClick="addRow('tMatrixA')"/>
                           <input type="button"  class="btn btn-default " value="Zeile -" onClick="deleteRow('tMatrixA')"/>
                           <input type="button"  class="btn btn-default " value="Spalte +" onClick="addColumn('tMatrixA')"/>
@@ -118,15 +118,10 @@
                               </tbody>
                           </table>
                         </div>
-
                       </div>
-
-
                   </fieldset>
               </form>
-
         </section>
-
         <section class="col-sm-5 block blockleft blocktop">
           <form>
               <fieldset id="ErgMatrix" class="matrixFieldset">
@@ -150,19 +145,10 @@
                       </tr>
                       </tbody>
                   </table>
-
               </fieldset>
           </form>
-
         </section>
-
-
       </section>
-
-
-
     </main>
-
-
   </body>
 </html>
