@@ -19,10 +19,6 @@ function restore() {
   myPaintArea.context.putImageData(drawingSurfaceImageData, 0, 0);
   console.log("I am restoring");
 }
-
-
-
-
   /*
   //                                                               function to print a rect filled with a color
   function fillRect (startPosX,startPosY,endPosX,endPosY,color){
