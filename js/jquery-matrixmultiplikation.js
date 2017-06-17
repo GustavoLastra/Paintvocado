@@ -1,166 +1,263 @@
-// JavaScript Document
-// -- MATRIX Größe verändern -- //
-// - Zeile hinzufügen
+/**
+* @overview matrix multiplication is a operation that produces a matrix
+* from two matrices A and B. In  more datail, if A is an n x m matrix and
+* B is an m x p matrix, their product AB is an n x p matrix in which the
+* m entries across a row of A are multiplied with the m entries down a columns
+* of B and dummed to produce an entry of AB.
+*/
+
+// Change size of Matrix
+// Add row
+/**
+* Add a row in the table with the id tableID
+* @function addRow
+* @param {String} tableID The ID of the table in which the row should be inserted
+* @var {String} tCols Stores columns of tableID as jQuery statement
+* @var {number} ColCount The number of columns in current table
+* @var {String} trLast Stores the last child object of the body of table with tableID as jQuery statement to add new row after that
+* @var {String} trNew Stores new added row of table with tableID as jQuery statement to add new columns into
+*/
 function addRow(tableID){
 	var tCols = '#' + tableID + ' tr:last td';
 	var ColCount = $(tCols).length
-	
+
 	var trLast = '#' + tableID + ' tbody:last-child';
 	$(trLast).append('<tr>');
 	trNew = '#' + tableID + ' tr:last';
-	
+
 	while(ColCount > 0){
 		$(trNew).append('<td><input type="number" value="0"></td>');
 		ColCount--;
 	}
 }
-// - Zeile löschen
-function deleteRow(tableID){		
+// Delete row
+/**
+* Delete a row in the table with the id tableID
+* @function deleteRow
+* @param {String} tableID The ID of the table in which the row should be deleted
+* @var {String} tRows Stores rows of tableID as jQuery statement
+* @var {String} trLast Stores the last row of tableID as jQuery statement
+* @var {number} RowCount The number of rows in current table
+*/
+function deleteRow(tableID){
 	var tRows = '#' + tableID + ' tr';
 	var trLast = '#' + tableID + ' tr:last';
-	
-	if($(tRows).length > 1){
+	var RowCount = $(tRows).length;
+
+	if(RowCount > 1){
 		 $(trLast).remove();
 	}
 }
-// - Spalte hinzufügen
+// Add column
+/**
+* Add a column in the table with the id tableID
+* @function addColumn
+* @param {String} tableID The ID of the table in which the column should be inserted
+* @var {String} tdLast Stores the last column of table with tableID as jQuery statement to insert a new column after that
+*/
 function addColumn(tableID){
 	var tdLast = '#' + tableID + ' td:last-child';
 	$(tdLast).after('<td><input type="number" value="0"></td>');
 }
-// - Spalte löschen
+// Delete colunm
+/**
+* Delete a column in the table with the id tableID
+* @function addColumn
+* @param {String} tableID The ID of the table in which the column should be deleted
+* @var {String} tdLast Stores the last column of table with tableID as jQuery statement to delete that
+* @var {String} tCols Stores columns of tableID as jQuery statement to check if at least one column is there
+* @var {number} ColCount The number of columns in current table
+*/
 function deleteColumn(tableID){
 	var tdLast = '#' + tableID + ' td:last-child';
 	var tCols = '#' + tableID + ' tr:last td';
-	
-	if($(tCols).length > 1){
+	var ColCount = $(tCols).length;
+
+	if(ColCount > 1){
 		 $(tdLast).remove();
 	}
 }
 
-// -- Matrix Multiplikation -- //
-// Daten aus der Tabelle holen und in Matrix speichern
+// Matrix Multiplication
+// Get values of input matrices from table
+/**
+* Get values of input matrices from table and store in multidimensional array (matrix)
+* @function getTableValues
+* @param {String} tableID The ID of the table from which the values should get
+* @var {Array} tArray an Array that stores all input values from table with tableID
+* @var {String} tInput Stores the inputs from table with tableID as jQuery statement
+* @var {number} val The value of current input argument
+* @var {String} mTable Stores the current table as jQuery statement
+* @var {Array} matrix An multidimensional array that stores all input values from table with tableID in matrix form
+* @var {String} rows Stores the rows of table with tableID as jQuery statement to count them later
+* @var {String} cols Stores the columns of table with tableID as jQuery statement to count them later
+* @var {number} idx Count variable for the iteration over tArray
+* @var {Array} row Stores current row in as array to push them later into multidimensional array matrix
+* @return {Array} matrix Multidimensional array that stores all input values of table with tableID in matrix form
+*/
 function getTableValues(tableID){
 	var tArray = new Array();
 	var tInput = '#' + tableID + ' tr :input[type=number]';
-	
+
 	$(tInput).each(function(){
-		var val = $(this).val();
-		tArray.push(parseFloat(val));
+		var val = parseFloat($(this).val());
+		tArray.push(val);
 	});
 
-	// Daten des Arrays in Matrixform schreiben
+	// Write input values in matrix form
 	var mTable = 'table#' + tableID;
 	var matrix = new Array();
-	
 	var rows = $(mTable).find('tbody').find('tr');
-	var cols = $(mTable).find('tbody').find('tr:first').find('td');	
+	var cols = $(mTable).find('tbody').find('tr:first').find('td');
 	var idx = 0;
-	
+
 	for (var i = 0; i < rows.length; i++) {
 		var row = new Array();
-		for (var j = 0; j < cols.length; j++){	
+		for (var j = 0; j < cols.length; j++){
 			row.push(tArray[idx]);
-			
-			idx++;				
-		}	
-		matrix.push(row);			
+			idx++;
+		}
+		matrix.push(row);
 	}
-	
 	return matrix;
 }
-// Multiplikation von Matrix A und Matrix B
-function multiplyMatrices(matrixA, matrixB){
-	// Überprüfen ob Multiplikation mit den eingegenbene Matrizen möglich	
+// Multiplication of Matrix A and B
+/**
+* Calculate the multiplication of matrix A and B
+* @function multiplyMatrices
+* @param {Array} matrixA Multidimensional array that stores all input values of Matrix A
+* @param {Array} matrixB Multidimensional array that stores all input values of Matrix B
+* @param {String} mo Stores the multiplication order
+* @var {number} NumColsA The number of columns of matrix A
+* @var {number} NumRowsA The number of rows of matrix A
+* @var {number} NumColsB The number of columns of matrix B
+* @var {number} NumRowsB The number of rows of matrix B
+* @var {Array} resMatrix Multidimensional array that stores resulting values after multiplication
+* @var {number} rA Count variable for the iteration
+* @var {Array} row Stores current row in as array to push them later into multidimensional array matrix
+* @var {number} sum Stores the sum of current calculation
+* @return {Array} resMatrix Multidimensional array that stores resulting values after multiplication
+*/
+function multiplyMatrices(matrixA, matrixB, mo){
+	// Check if matrix multiplication is possible
+	// Multiplication is possible if the number of columns of matrix A have to be the same as the number of rows of matrix B
 	var NumColsA = matrixA[0].length;
 	var NumRowsB = matrixB.length;
-				
+
+	// If condition is complied calculation is started
 	if (NumColsA == NumRowsB){
-		// Wenn Regel erfüllt Multiplikation berechnen		
-		// Berechnung nach Falkschem Schema
-		
-		var ErgMatrix = new Array();
+		// Multiplication by Falk Scheme
+		var resMatrix = new Array();
 		var NumRowsA = matrixA.length;
 		var NumColsB = matrixB[0].length;
 		var rA = 0;
-		
+
 		while(rA < NumRowsA){
-			var result = new Array();	
+			var row = new Array();
 			for(var c = 0; c < NumColsB; c++){
-				
 				var sum = 0;
-				for(var r = 0; r < NumRowsB; r++){	
-						sum = sum + (matrixA[rA][r] * matrixB[r][c]);								
+				for(var r = 0; r < NumRowsB; r++){
+						sum = sum + (matrixA[rA][r] * matrixB[r][c]);
 						}
-				result.push(sum);
+				row.push(sum);
 				}
-			ErgMatrix.push(result);
+			resMatrix.push(row);
 			rA++;
 			}
-			
-		return ErgMatrix;
+		return resMatrix;
 		}
+		// If condition is not complied error message is displayed and calculation is canceled
 	else{
-		// Wenn Regel nicht erfüllt Fehlermeldung ausgeben
-		alert('Multiplikation nicht möglich! Spaltenanzahl von Matrix A muss Zeilenanzahl von Matrix B entsprechen!');
+		switch(mo) {
+    case 'AB':
+        alert('Multiplikation nicht möglich! \nSpaltenanzahl von Matrix A muss Zeilenanzahl von Matrix B entsprechen!');
+        break;
+    case 'BA':
+        alert('Multiplikation nicht möglich! \nSpaltenanzahl von Matrix B muss Zeilenanzahl von Matrix A entsprechen!');
+        break;
+}
+		// if(mo == 'AB'){
+		// 	alert('Multiplikation nicht möglich! \nSpaltenanzahl von Matrix A muss Zeilenanzahl von Matrix B entsprechen!');
+		// }else if (mo =='BA'){
+		// 	alert('Multiplikation nicht möglich! \nSpaltenanzahl von Matrix B muss Zeilenanzahl von Matrix A entsprechen!');
+		// }
+
 		}
 	}
-// Speichern der Ergebnismatrix in Tabelle	
-function setTableValues(ErgMatrix){
-	var NumColsErgMatrix = ErgMatrix[0].length;
-	var NumRowsErgMatrix = ErgMatrix.length;
-	var NumRowsTable = $('table#tErgMatrix').find('tbody').find('tr');
-	var NumColsTable = $('table#tErgMatrix').find('tbody').find('tr:first').find('td');	
-	
-	// - Tabelle für Ergebnismatrix anpassen
-	// Spaltenanzahl anpassen
-	while(NumColsErgMatrix != NumColsTable.length){				
-		if(NumColsErgMatrix > NumColsTable.length){
-			// Spalten der Tabelle einfügen
+	// Set values of result matrix with values of multidimensional array and put results in table
+	/**
+	* Set values of result matrix table with values of multidimensional array
+	* @function setTableValues
+	* @param {Array} resMatrix Multidimensional array that stores all values of result matrix
+	* @var {number} NumColsResMatrix The number of columns of result matrix
+	* @var {number} NumRowsResMatrix The number of rows of result matrix
+	* @var {String} RowsTable Stores the rows of result matrix table as jQuery statement
+	* @var {String} ColsTable Stores the columns of result matrix table as jQuery statement
+	* @var {number} ColCount The number of columns in result matrix table
+	* @var {number} cells Stores the current value of matrix entry
+	*/
+function setTableValues(resMatrix){
+	var NumColsResMatrix = resMatrix[0].length;
+	var NumRowsResMatrix = resMatrix.length;
+	var RowsTable = $('table#tErgMatrix').find('tbody').find('tr');
+	var ColsTable = $('table#tErgMatrix').find('tbody').find('tr:first').find('td');
+
+	// Change result table size depending on result matrix
+	// Change number of rows depending on result matrix
+	while(NumColsResMatrix != ColsTable.length){
+		if(NumColsResMatrix > ColsTable.length){
+			// Add column to current table
 			$('#tErgMatrix td:last-child').after('<td></td>');
 		}else{
-			// Spalten der Tabelle löschen
+			// Delete column of current table
 			deleteColumn('tErgMatrix');
 		}
-		
-		var NumColsTable = $('table#tErgMatrix').find('tbody').find('tr:first').find('td');	
+		var ColsTable = $('table#tErgMatrix').find('tbody').find('tr:first').find('td');
 	}
-	// Zeilenanzahl anpassen
-	while(NumRowsErgMatrix != NumRowsTable.length){				
-		if(NumRowsErgMatrix > NumRowsTable.length){
-			// Spalten der Tabelle einfügen
+	// Change number of columns depending on result matrix
+	while(NumRowsResMatrix != RowsTable.length){
+		if(NumRowsResMatrix > RowsTable.length){
+			// Add row to current table
 			var ColCount = $('#tErgMatrix tr:last td').length
 			$('#tErgMatrix tbody:last-child').append('<tr>');
-			
+
 			while(ColCount > 0){
 				$('#tErgMatrix tr:last').append('<td></td>');
 				ColCount--;
 			}
 		}else{
-			// Spalten der Tabelle löschen
+			// Delete row of current table
 			deleteRow('tErgMatrix');
 		}
-		
-		var NumRowsTable = $('table#tErgMatrix').find('tbody').find('tr');
+		var RowsTable = $('table#tErgMatrix').find('tbody').find('tr');
 	}
-	
-	// - Werte in Tabelle eintragen
-	for (var i = 0; i < NumRowsTable.length; i++) {
-		for (var j = 0; j < NumColsTable.length; j++){
-			
-			var cells = $(NumRowsTable[i]).find('td').eq(j).html(ErgMatrix[i][j]);				
+	// put values in table
+	for (var i = 0; i < RowsTable.length; i++) {
+		for (var j = 0; j < ColsTable.length; j++){
+			var cells = $(RowsTable[i]).find('td').eq(j).html(resMatrix[i][j]);
 		}
 	}
 }
-
-function getMultiplicationResult(){
-	// Daten aus Tabellen auslesen und in Matrix A und B speichern
-	matrixA = getTableValues('tMatrixA');
-	matrixB = getTableValues('tMatrixB');
-	
-	// Berechnung der Multiplikation nach Falkschem Schema
-	ErgMatrix = multiplyMatrices(matrixA, matrixB);
-
-	// Speichern der Ergebnismatrix in Tabelle
-	setTableValues(ErgMatrix);
+// Do all calculation steps (get table values, multiplication, set table values)
+/**
+* Do all calculation steps
+* (1) get values of input matrices A and B and save values in mulidimensional array
+* (2) multiplicate Matrix A and B by Falk scheme and save values of resulting Matrix in multidimensional array
+* (3) set values of result matrix table with values of multidimensional array
+* @function getMultiplicationResult
+* @param {String} mo Stores the multiplication order (for example AB oder BA)
+* @param {String} tableID1 The id of table stored first matrix (if mo = AB first matrix is A)
+* @param {String} tableID2 The id of table stored second matrix (if mo = AB first matrix is B)
+* @var {Array} matrix1 Multidimensional array that stores all input values of first matrix (if mo = AB first matrix is A)
+* @var {Array} matrix2 Multidimensional array that stores all input values of second matrix (if mo = AB second matrix is B)
+* @var {Array} resMatrix Multidimensional array that stores resulting values after multiplication
+*/
+function getMultiplicationResult(mo, tableID1,tableID2){
+	// Get values of input matrices A and B and store it in multidimensional array (matrix)
+	var matrix1 = getTableValues(tableID1);
+	var matrix2 = getTableValues(tableID2);
+	// Multiplicate Matrix A and B by Falk scheme and save values of resulting Matrix in multidimensional array
+	var resMatrix = multiplyMatrices(matrix1, matrix2, mo);
+	// Set values of result matrix with values of multidimensional array and put results in table
+	setTableValues(resMatrix);
 }

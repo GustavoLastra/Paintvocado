@@ -38,7 +38,13 @@ legend{
 	border-color:#999;
 	border-width:thin;
 	font-size:14px;
+	margin-left: 15%;
 	}
+#tErgMatrix {
+	margin-left: 45%;
+}
+
+
 canvas {
     padding-left: 0;
     padding-right: 0;
