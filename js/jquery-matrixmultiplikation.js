@@ -176,12 +176,6 @@ function multiplyMatrices(matrixA, matrixB, mo){
         alert('Multiplikation nicht möglich! \nSpaltenanzahl von Matrix B muss Zeilenanzahl von Matrix A entsprechen!');
         break;
 }
-		// if(mo == 'AB'){
-		// 	alert('Multiplikation nicht möglich! \nSpaltenanzahl von Matrix A muss Zeilenanzahl von Matrix B entsprechen!');
-		// }else if (mo =='BA'){
-		// 	alert('Multiplikation nicht möglich! \nSpaltenanzahl von Matrix B muss Zeilenanzahl von Matrix A entsprechen!');
-		// }
-
 		}
 	}
 	// Set values of result matrix with values of multidimensional array and put results in table
